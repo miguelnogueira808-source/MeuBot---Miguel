@@ -30,10 +30,10 @@ def carregar_mensagens(nome):
 # --- BARRA LATERAL ---
 with st.sidebar:
     opcoes_modelos = {
-        "Flash Lite (3.1)": "models/gemini-3.1-flash-lite",
-        "Flash (3.5)": "models/gemini-3.5-flash",
-        "Pro (1.5)": "models/gemini-1.5-pro",
-        "Gerador de Imagem": "stable-diffusion"
+        "Rapido": "models/gemini-3.1-flash-lite",
+        "Simples": "models/gemini-3.5-flash",
+        "Pro": "models/gemini-2.5-pro",
+        "Imagem": "stable-diffusion"
     }
     
     escolha_usuario = st.radio(
