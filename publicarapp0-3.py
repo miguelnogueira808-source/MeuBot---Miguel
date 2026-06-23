@@ -47,7 +47,6 @@ with st.sidebar:
         "Pro": "models/gemini-2.5-pro",
         "Gerador de Imagem": "stable-diffusion"
     }
-    
     escolha_usuario = st.radio(
         "Escolha o modo:", 
         list(opcoes_modelos.keys()), 
@@ -62,7 +61,7 @@ with st.sidebar:
 
     conversa_selecionada = st.selectbox("", [""] + [f.replace("historicos/", "").replace(".json", "") for f in glob.glob("historicos/*.json")])
     
-   escolha_usuario = st.radio(
+    escolha_usuario = st.radio(
         "Escolha o modo:", 
         list(opcoes_modelos.keys()), 
         key="modo_selecionado" # <--- Essa chave resolve o erro de duplicidade
@@ -85,7 +84,7 @@ with st.sidebar:
     conversa_selecionada = st.selectbox("", [""] + [f.replace("historicos/", "").replace(".json", "") for f in glob.glob("historicos/*.json")])
 
 # --- LÓGICA DO CHAT ---
-if conversa_selecionada:
+    if conversa_selecionada:
     st.session_state.messages = carregar_mensagens(conversa_selecionada)
     for msg in st.session_state.messages:
         with st.chat_message(msg["role"]):
@@ -96,16 +95,16 @@ if conversa_selecionada:
         st.chat_message("user").markdown(prompt)
 
        # Lógica de Imagem (Mudança para SDXL, mais amigável com a moderação)
-        if modo == "stable-diffusion":
-            with st.spinner("🎨 Gerando imagem..."):
-                try:
-                    # Endereço da API para SDXL v1.0
-                    url = "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image"
+    if modo == "stable-diffusion":
+        with st.spinner("🎨 Gerando imagem..."):
+            try:
+                 # Endereço da API para SDXL v1.0
+                 url = "https://api.stability.ai/v1/generation/stable-diffusion-xl-1024-v1-0/text-to-image"
                     
-                    headers = {
-                        "authorization": f"Bearer {STABILITY_API_KEY}",
-                        "accept": "application/json", # Mudamos para JSON no SDXL
-                        "content-type": "application/json"
+                 headers = {
+                      "authorization": f"Bearer {STABILITY_API_KEY}",
+                      "accept": "application/json", # Mudamos para JSON no SDXL
+                      "content-type": "application/json"
                     }
                     
                     # Corpo da requisição ajustado para o formato do SDXL
